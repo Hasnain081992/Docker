@@ -1,0 +1,187 @@
+docker practical
+
+cmd >  
+docker run -it ubuntu
+
+
+create folder name docker
+and inside create another folder python
+
+open virtual studio locate to docker folder
+create file name Docker
+and inside 
+copy and paste command
+
+# Use an official Python runtime as a parent image
+FROM python:3.7-slim
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Run hello_world.py when the container launches
+CMD ["python", "hello_world.py"]
+
+
+create another file name HELLO_WORLD.PY AND INSIDE TYPE
+print('any thing')
+
+------------------------
+ type:   docker build -t hasnain_docker .
+
+and copy this in terminal 
+C:\Users\44754\Downloads\Docker\Python> docker.....
+
+
+
+run: docker image ls -----show whatever you created
+
+to create image and run your container
+
+type: docker run <image-id or image name>
+
+
+
+image created
+
+
+
+same thing to passed api
+
+
+
+
+
+
+
+
+
+
+
+ docker build -t dockerpython .
+
+
+
+
+docker build -t hasnain_docker_python .
+docker image ls
+
+
+
+docker ps -a    container
+name := "my-scala-app"
+
+version := "1.0"
+
+scalaVersion := "2.13.5"
+
+libraryDependencies += "org.apache.spark" %% "spark-core" % "2.4.7"
+
+mainClass in Compile := Some("com.example.Main")
+
+
+create new file
+helloworld.scala
+
+and type inside
+
+object HelloWorld {
+  def main(args: Array[String]): Unit = {
+    println("Hello, World!")
+  }
+}
+
+run interminal folling command
+
+docker build -t <any name>
+docker image ls
+docker run <image id name>
+docker ps -a
+
+
+image is just like template when you run image than container created so contaniner is the resources. container run your application
+
+
+
+to delete docker image type
+docker rmi <image id>  (error because we cant delete before container)
+
+we can force delete by using
+docker rmi -f <image >
+
+
+----------------------
+how to delete a container
+you not need to remove image
+
+docker ps -ls
+docker rm <container id>
+
+-----------------
+
+to remove all container/image at a same time
+
+go to powershell and type
+
+
+To remove all containers:To remove all containers:
+docker rm -f $(docker ps -a -q)
+
+To remove all images:
+docker rmi -f $(docker images -a -q)
+
+
+
+
+
+----------------------------------------
+
+docker compose
+
+recreate a image and container
+
+
+to create a docker compose you need a yml and create in docker file
+
+
+dockercompose.yml
+
+
+and copypaste
+
+
+version: '3'
+services:
+  python:
+    build:
+      context: ./python
+    volumes:
+      - ./python:/app
+    command: python /app/hello_world.py
+  scala:
+    build:
+      context: ./scala
+    volumes:
+      - ./scala:/app
+    command: scala HelloWorld.scala
+  pyspark:
+    build:
+      context: ./pyspark
+    volumes:
+      - ./pyspark:/app
+    command: spark-submit --master local[*] /app/app.py
+
+
+
+
+
+
+run <docker name> build
+eg docker-compose build
+docker image ls
+docker ps -a
+<docker file> up
+eg docker-compose up
+docker ps -a
