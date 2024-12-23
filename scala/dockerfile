@@ -14,7 +14,7 @@ RUN \
 # Set the working directory
 WORKDIR /app
 #ok
-
+#ok
 # Copy the Scala source code into the container
 COPY HelloWorld.scala .
 
