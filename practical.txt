@@ -1,0 +1,105 @@
+practical
+
+
+create a new folder pyspark
+docker-pyspark
+
+inside pyspark create file name Dockerfile
+
+inside Dockerfile write
+
+
+
+FROM openjdk:8-jre-slim-buster
+
+# Install Python and pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install PySpark
+RUN pip3 install pyspark==3.2.1
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the PySpark application code into the container
+COPY app.py .
+
+# Set the entrypoint
+CMD ["spark-submit", "--master", "local[*]", "app.py"]
+
+
+
+create new file inside pyspark
+
+app.py
+copy and paste inside
+
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("AdditionApp").getOrCreate()
+
+a = 10
+b = 20
+
+result = a + b
+
+print(f"The result of {a} + {b} is {result}")
+
+spark.stop()
+
+
+
+---------------
+save it and type in terminal
+
+
+docker build -t docker_pyspark .
+docker image ls
+docker run <image id>
+
+
+------------
+
+creat scala folder(3)
+
+create dockerfile inside and paste
+
+
+FROM openjdk:8
+
+# Install Scala
+ENV SCALA_VERSION 2.12.15
+ENV SCALA_HOME /usr/share/scala
+ENV PATH $PATH:$SCALA_HOME/bin
+RUN \
+  cd /tmp && \
+  curl -Lo scala-${SCALA_VERSION}.tgz https://downloads.typesafe.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.tgz && \
+  tar xf scala-${SCALA_VERSION}.tgz && \
+  mv scala-${SCALA_VERSION} ${SCALA_HOME} && \
+  rm scala-${SCALA_VERSION}.tgz
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Scala source code into the container
+COPY HelloWorld.scala .
+
+# Compile the Scala source code
+RUN scalac HelloWorld.scala
+
+# Set the entrypoint
+CMD ["scala", "HelloWorld"]
+
+
+
+-----------------------
+to run we need to run build.sbt
+
+
+
+create build .sbt and copypaste
+
+

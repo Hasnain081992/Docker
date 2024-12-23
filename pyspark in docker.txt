@@ -1,0 +1,11 @@
+pyspark in docker
+
+o process data in spark while using python is pyspark
+spark is one of the etl tool to work in data
+
+
+pyspark can run in spark as well as docker
+
+mainly used for data engineering/data migration
+
+

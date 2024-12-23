@@ -1,0 +1,9 @@
+17/12/2024
+
+open scala
+run a command
+
+install sbt
+
+
+run sbt in cmd

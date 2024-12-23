@@ -1,0 +1,6 @@
+// Create an RDD from a CSV file
+
+val csvRdd = sc.textFile("/tmp/bigdata_nov_2024/Hasnain/data.csv")
+csvRdd.map(line => line.split(",")).collect().foreach(arr => println(arr.mkString(" ")))
+
+// Process CSV data (you might need to split columns, etc.)

@@ -1,0 +1,44 @@
+spark with scala
+
+spark-shell
+---------
+create rdd using scala
+// Create a local collection (List, Array, etc.)
+val data = List(1, 2, 3, 4, 5)
+
+// Create an RDD from the collection
+val rdd = sc.parallelize(data)
+
+// Show the contents of the RDD
+rdd.collect().foreach(println)
+
+
+
+for filter
+
+// Existing RDD
+val rdd = sc.parallelize(List(1, 2, 3, 4, 5))
+
+// Apply a transformation (filter)
+val filteredRDD = rdd.filter(x => x % 2 == 0)
+
+// Collect and print the results
+filteredRDD.collect().foreach(println)
+
+
+for file
+
+
+// Existing RDD
+val rdd = sc.parallelize(List(1, 2, 3, 4, 5))
+
+// Apply a transformation (filter)
+val filteredRDD = rdd.filter(x => x % 2 == 0)
+
+// Collect and print the results
+filteredRDD.collect().foreach(println)
+
+
+
+
+
